@@ -26,6 +26,8 @@ fun main(){
     println(add())
     println(producto(5,8))
     printarray(names)
+     val numbers = arrayOf(1,2,3,4,5,6,7,8,9,10)
+    isEven(numbers)
 
 }
 
@@ -39,11 +41,21 @@ fun producto(x:Int,y:Int):Int{
     return (x*y)
 }
 
-fun printarray(names:Array<String>){
+fun printarray(names:Array<String>) {
     println(names)
     //El for separa los nombres del array y va imprimiendo cada uno 
-    for(name in names){
+    for (name in names) {
         println(" hello $name")
     }
-
 }
+    fun isEven(numbers:Array<Int>){
+        for (number in numbers){
+            if (number % 2 == 0){
+                println ("the number $number is even")
+            }
+            else{
+                println ("the number $number is odd")
+            }
+        }
+    }
+
