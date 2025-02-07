@@ -18,19 +18,24 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
             Example1Theme {
+                Text(text = "Hello World!")
+                Text(text = "Welcome to your finish ")
+
+                /*
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
                     )
-                }
+                }*/
             }
         }
     }
 }
 
-@Composable
+/*@Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
         text = "Hello $name!",
@@ -44,4 +49,4 @@ fun GreetingPreview() {
     Example1Theme {
         Greeting("Android")
     }
-}
+}*/

@@ -29,6 +29,11 @@ fun main(){
      val numbers = arrayOf(1,2,3,4,5,6,7,8,9,10)
     isEven(numbers)
 
+    println(getDay(1))
+    val person = person("Miguel", 22)
+    person.displayInformation()
+    println(person.name)
+    println(person.age)
 }
 
 fun add():Int{
@@ -48,14 +53,36 @@ fun printarray(names:Array<String>) {
         println(" hello $name")
     }
 }
-    fun isEven(numbers:Array<Int>){
-        for (number in numbers){
-            if (number % 2 == 0){
-                println ("the number $number is even")
-            }
-            else{
-                println ("the number $number is odd")
+    fun isEven(numbers:Array<Int>) {
+        for (number in numbers) {
+            if (number % 2 == 0) {
+                println("the number $number is even")
+            } else {
+                println("the number $number is odd")
             }
         }
     }
+
+    fun getDay(day:Int): String{
+        var name= ""
+        when (day){
+            //Si la operacion que se asigna a cada caso se utilizaran llaves
+            1 -> name ="Monday"
+            2 -> name ="Tuesday"
+            3 -> name ="Wednesday"
+            4 -> name ="Thursday"
+            5 -> name ="Friday"
+            6 -> name ="Saturday"
+            7 -> name ="Sunday"
+            else -> name ="Incorrect value"
+
+        }
+        return name
+    }
+
+class person (val name:String, val age:Int){
+    fun displayInformation(){
+        println("Name $name Age $age")
+    }
+}
 
