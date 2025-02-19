@@ -41,6 +41,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.example1.ui.theme.Example1Theme
+import com.rick.workclass.ejemplo.com.example.example1.ui.App.StockApp
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.HomeScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.MainMenuScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.TestScreen
@@ -67,6 +68,7 @@ NavHost(navController = navController, startDestination = "Main_menu"){
     composable("Main_menu"){ MainMenuScreen(navController)}
     composable("Home_Screen"){ HomeScreen(navController) }
     composable("test_screen"){ TestScreen(navController) }
+    composable("StockApp") { StockApp(navController) }
 
 }
 }
