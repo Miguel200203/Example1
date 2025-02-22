@@ -368,7 +368,7 @@ fun marcas_populares() {
         }
     }
 }
-@Preview
+
 @Composable
 fun jordan_5() {
     Column(
