@@ -45,6 +45,7 @@ import com.rick.workclass.ejemplo.com.example.example1.ui.App.StockApp
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.HomeScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.MainMenuScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.TestScreen
+import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.componentsScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,7 +70,7 @@ NavHost(navController = navController, startDestination = "Main_menu"){
     composable("Home_Screen"){ HomeScreen(navController) }
     composable("test_screen"){ TestScreen(navController) }
     composable("StockApp") { StockApp(navController) }
-
+    composable("components_screen") { componentsScreen(navController) }
 }
 }
 

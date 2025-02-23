@@ -54,5 +54,13 @@ fun MainMenuScreen(navHostController: NavHostController){
             Text(text="Go to App Stock",
                fontSize = 20.sp)
         }
+        Button(
+            onClick = {navHostController.navigate("components_screen") }
+
+        ) {
+
+            Text(text="Go to Components Screen",
+                fontSize = 20.sp)
+        }
     }
 }
