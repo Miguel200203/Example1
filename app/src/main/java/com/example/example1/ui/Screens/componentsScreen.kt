@@ -74,15 +74,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun componentsScreen(navController: NavController) {
-    // buttons()
-    //FloatingButtons()
-    // Progress()
-    //chips()
-    //Sliders()
-    //Switches()
-    //Badges()
-   //nackeBars()
-   // AlertDialogs()
+
     var option by rememberSaveable { mutableStateOf("Buttons") }
     var drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     var scope = rememberCoroutineScope()
