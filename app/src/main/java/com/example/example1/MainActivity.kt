@@ -52,7 +52,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ComposableMultiScreenApp()
+            Example1Theme {
+
+                ComposableMultiScreenApp()
+
+
+            }
 
 
             }

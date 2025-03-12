@@ -1,6 +1,7 @@
 package com.rick.workclass.ejemplo.com.example.example1.ui.Screens
 
 import android.graphics.Color
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
@@ -46,7 +52,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.LargeFloatingActionButton
+import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -60,6 +68,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -75,9 +84,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.window.core.layout.WindowHeightSizeClass
+import androidx.window.core.layout.WindowWidthSizeClass
 import com.example.example1.R
 import com.rick.workclass.ejemplo.com.example.example1.data.model.MenuModel
 import com.rick.workclass.ejemplo.com.example.example1.data.model.PostCardModel
+import com.rick.workclass.ejemplo.com.example.example1.ui.Component.PostCardCompactComponent
 import com.rick.workclass.ejemplo.com.example.example1.ui.Component.PostCardComponent
 import kotlinx.coroutines.launch
 
@@ -230,6 +242,7 @@ fun FloatingButtons() {
 
     }
 }
+
 
 //@Preview(showBackground = true)
 @Composable
@@ -500,6 +513,7 @@ fun AlertDialogs() {
 
     }
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Bars() {
@@ -509,8 +523,8 @@ fun Bars() {
     ) {
         TopAppBar(
             colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = androidx.compose.ui.graphics.Color.Black,
-                titleContentColor = androidx.compose.ui.graphics.Color.White
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                titleContentColor = MaterialTheme.colorScheme.secondary
             ),
             title = {Text("Screen Title")},
             actions = {
@@ -521,23 +535,38 @@ fun Bars() {
                     Icon(Icons.Filled.Search, contentDescription = "")
                 }
             }
-        )
+        )/*
         val arraydefault = arrayOf(
-            PostCardModel(1,"","", R.drawable.autos),
-            PostCardModel(2,"","", R.drawable.jordan),
-            PostCardModel(3,"","", R.drawable.kobe)
+            PostCardModel(1,"Autos","variedad de autos", R.drawable.autos),
+            PostCardModel(2,"Sneakers","Jordan 1", R.drawable.jordan),
+            PostCardModel(3,"Sneakers","Kobe", R.drawable.kobe),
+            PostCardModel(4,"Autos","variedad de autos", R.drawable.autos),
+            PostCardModel(5,"Sneakers","Jordan 1", R.drawable.jordan),
+            PostCardModel(6,"Sneakers","Kobe", R.drawable.kobe),
+            PostCardModel(7,"Autos","variedad de autos", R.drawable.autos),
+            PostCardModel(8,"Sneakers","Jordan 1", R.drawable.jordan),
+            PostCardModel(9,"Sneakers","Kobe", R.drawable.kobe)
         )
-        LazyColumn (
+
+
+        LazyVerticalGrid (
+            columns = GridCells.Adaptive(minSize = 100.dp),
             modifier = Modifier.fillMaxSize()
                 .weight(1f)
         ){
             items(arraydefault){
                 item -> PostCardComponent(item.id,item.title,item.text,item.image)
             }
+        }*/
+        Column (
+            modifier = Modifier.weight(1f)
+                .fillMaxSize()
+        ){
+            Adaptive()
         }
             BottomAppBar (
-                containerColor = androidx.compose.ui.graphics.Color.Cyan,
-                contentColor = androidx.compose.ui.graphics.Color.Black
+                containerColor = androidx.compose.ui.graphics.Color.Black,
+                contentColor = androidx.compose.ui.graphics.Color.White
             ){
                 IconButton(
                     modifier = Modifier.weight(1f),
@@ -579,6 +608,53 @@ fun Bars() {
 
 
     }
+@Composable
+fun Adaptive(){
+    var windowSyze = currentWindowAdaptiveInfo().windowSizeClass
+    var height = currentWindowAdaptiveInfo().windowSizeClass.windowHeightSizeClass
+    var width = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass
+    //Compact width < 600 dp phone portrait
+    // Medium width >= 600 dp < 800 dp Tablet portrait
+    // Expanded width >= 800 dp Tablet Landscape
+
+    //Compact height < 480 dp Phone Landscape
+    //Medium height >= 480 dp < 900 dp Tablet Landscape o Phone Portrait
+    //Expanded height >= 900 dp Tablet Portrait
+    val arraydefault = arrayOf(
+        PostCardModel(1,"Autos","variedad de autos", R.drawable.autos),
+        PostCardModel(2,"Sneakers","Jordan 1", R.drawable.jordan),
+        PostCardModel(3,"Sneakers","Kobe", R.drawable.kobe),
+        PostCardModel(4,"Autos","variedad de autos", R.drawable.autos),
+        PostCardModel(5,"Sneakers","Jordan 1", R.drawable.jordan),
+        PostCardModel(6,"Sneakers","Kobe", R.drawable.kobe),
+        PostCardModel(7,"Autos","variedad de autos", R.drawable.autos),
+        PostCardModel(8,"Sneakers","Jordan 1", R.drawable.jordan),
+        PostCardModel(9,"Sneakers","Kobe", R.drawable.kobe)
+    )
+    if (width == WindowWidthSizeClass.COMPACT){
+        LazyColumn (
+
+            modifier = Modifier.fillMaxSize()
+
+        ){
+            items(arraydefault){
+                    item -> PostCardComponent(item.id,item.title,item.text,item.image)
+            }
+        }
+    }
+    else if (height == WindowHeightSizeClass.COMPACT){
+        LazyRow (
+
+            modifier = Modifier.fillMaxSize()
+
+        ){
+            items(arraydefault){
+                    item -> PostCardCompactComponent(item.id,item.title,item.text,item.image)
+            }
+        }
+
+    }
+}
 
 
 

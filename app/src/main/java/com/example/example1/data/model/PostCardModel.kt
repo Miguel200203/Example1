@@ -6,3 +6,5 @@ data class PostCardModel(
     val text:String,
     val image:Int
 )
+
+
