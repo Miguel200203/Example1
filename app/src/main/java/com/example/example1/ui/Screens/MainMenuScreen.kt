@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -38,13 +39,15 @@ fun MainMenuScreen(navHostController: NavHostController){
 
         ) {
             Text("Go to Home Screen",
-                fontSize = 20.sp)
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
         }
         Button(
             onClick = {navHostController.navigate("test_screen") }
         ) {
             Text("Go to Test Screen",
-                fontSize = 20.sp)
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
         }
         Button(
             onClick = {navHostController.navigate("StockApp") }
@@ -52,7 +55,53 @@ fun MainMenuScreen(navHostController: NavHostController){
         ) {
 
             Text(text="Go to App Stock",
-               fontSize = 20.sp)
+               fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
         }
+        Button(
+            onClick = {navHostController.navigate("components_screen") }
+
+        ) {
+
+            Text(text="Go to Components Screen",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }
+       /* Button(
+            onClick = {navHostController.navigate("DatePickers")
+            }
+
+        ) {
+            Text("Go to Date Pickers",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }
+        Button(
+            onClick = {navHostController.navigate("PullAndRefresh")
+            }
+
+        ) {
+            Text("Go to Pull and refresh",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }
+        Button(
+            onClick = {navHostController.navigate("BottomStreets")
+            }
+
+        ) {
+            Text("Go to Bottom Streets",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }
+        Button(
+            onClick = {navHostController.navigate("SegmentedButtons")
+            }
+
+        ) {
+            Text("Go to Segmented Buttons",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }*/
     }
 }
