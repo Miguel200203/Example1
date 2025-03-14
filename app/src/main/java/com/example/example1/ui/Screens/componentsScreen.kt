@@ -2,8 +2,10 @@ package com.rick.workclass.ejemplo.com.example.example1.ui.Screens
 
 import android.graphics.Color
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,14 +18,18 @@ import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
@@ -35,10 +41,13 @@ import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -92,6 +101,23 @@ import com.rick.workclass.ejemplo.com.example.example1.data.model.PostCardModel
 import com.rick.workclass.ejemplo.com.example.example1.ui.Component.PostCardCompactComponent
 import com.rick.workclass.ejemplo.com.example.example1.ui.Component.PostCardComponent
 import kotlinx.coroutines.launch
+import androidx.compose.material3.TextField
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.rememberDatePickerState
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.MultiChoiceSegmentedButtonRow
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.ui.unit.sp
+import com.example.example1.ui.theme.blue500
+import com.example.example1.ui.theme.gray200
+import com.example.example1.ui.theme.gray50
+import com.example.example1.ui.theme.gray800
+import kotlinx.coroutines.delay
+import java.util.Calendar
 
 
 @Composable
@@ -106,7 +132,12 @@ fun componentsScreen(navController: NavController) {
         MenuModel(7,"Switch","Switch",Icons.Filled.Check),
         MenuModel(8,"SnackeBars","SnackeBars",Icons.Filled.Notifications ),
         MenuModel(9,"AlertDialog","AlertDialog",Icons.Filled.Warning),
-        MenuModel(10,"Bars","Bars",Icons.Filled.Person)
+        MenuModel(10,"Bars","Bars",Icons.Filled.Person),
+        MenuModel(11,"InputFreids","InputFreids",Icons.Filled.Phone),
+        MenuModel(12,"PullAndRefresh","PullAndRefresh",Icons.Filled.Refresh),
+        MenuModel(13,"DatePickers","DatePickers",Icons.Filled.AddCircle),
+        MenuModel(14,"BottomStreets","BottomStreets",Icons.Filled.Check),
+        MenuModel(15,"SegmentedButtons","SegmentedButtons",Icons.Filled.Favorite),
 
 
     )
@@ -183,6 +214,21 @@ fun componentsScreen(navController: NavController) {
 
                 "Bars" -> {
                     Bars()
+                }
+                "InputFreids"-> {
+                    InputFreids()
+                }
+                "DatePickers"->{
+                    DatePickers()
+                }
+                "PullAndRefresh"->{
+                    PullAndRefresh()
+                }
+                "BottomStreets"-> {
+                    BottomStreets()
+                }
+                "SegmentedButtons"->{
+                    SegmentedButtons()
                 }
             }
         }
@@ -469,6 +515,7 @@ fun SnackeBars() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AlertDialogs() {
+    
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -656,10 +703,212 @@ fun Adaptive(){
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun InputFreids() {
+    var text by remember { mutableStateOf("") }
 
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        TextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text("Enter your name") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Text(
+            text = "You typed: $text",
+            modifier = Modifier.padding(top = 16.dp)
+        )
+    }
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DatePickers() {
+    var showDatePicker by remember { mutableStateOf(false) }
+    val datePickerState = rememberDatePickerState()
+    var selectedDate by remember { mutableStateOf("") }
 
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Button(onClick = { showDatePicker = true },
+            colors = ButtonDefaults.buttonColors(
+                contentColor =  androidx.compose.ui.graphics.Color.White
+            )) {
+            Text("Select Date")
+        }
 
+        if (showDatePicker) {
+            DatePickerDialog(
+                onDismissRequest = { showDatePicker = false },
+                confirmButton = {
+                    TextButton(onClick = {
+                        showDatePicker = false
+                        // Obtener la fecha seleccionada del estado
+                        datePickerState.selectedDateMillis?.let { millis ->
+                            selectedDate = Calendar.getInstance().apply {
+                                timeInMillis = millis
+                            }.time.toString()
+                        }
+                    }) {
+                        Text("OK", color = androidx.compose.ui.graphics.Color.Black)
+                    }
+                }
+            ) {
+                DatePicker(state = datePickerState)
+            }
+        }
 
+        Text(
+            text = "Selected Date: $selectedDate",
+            modifier = Modifier.padding(top = 16.dp)
+        )
+    }
+}
 
+@Composable
+fun PullAndRefresh() {
+    var refreshing by remember { mutableStateOf(false) }
+    var items by remember { mutableStateOf((1..10).toList()) }
 
+    val refreshScope = rememberCoroutineScope()
 
+    fun refresh() {
+        refreshScope.launch {
+            refreshing = true
+            delay(1000) // Simula una operación de red
+            items = (1..10).shuffled() // Actualiza los datos
+            refreshing = false
+        }
+    }
+
+    SwipeRefresh(
+        state = rememberSwipeRefreshState(isRefreshing = refreshing),
+        onRefresh = { refresh() },
+        modifier = Modifier.fillMaxSize()
+    ) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            items(items) { item ->
+                Text(
+                    text = "Item $item",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                )
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BottomStreets() {
+    var showBottomSheet by remember { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Button(onClick = { showBottomSheet = true }) {
+            Text("Show Bottom Sheet")
+        }
+
+        if (showBottomSheet) {
+            ModalBottomSheet(
+                onDismissRequest = { showBottomSheet = false }
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text("This is a Bottom Sheet")
+                    Button(onClick = { showBottomSheet = false }) {
+                        Text("Close")
+                    }
+                }
+            }
+        }
+    }
+}
+@Composable
+fun SegmentedButtons() {
+    var selectedOption by remember { mutableStateOf("Option 1") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        // Fila para los botones segmentados
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(gray200, shape = MaterialTheme.shapes.medium) // Fondo gris claro
+                .padding(4.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            listOf("Option 1", "Option 2", "Option 3").forEach { option ->
+                Row(
+                    modifier = Modifier
+                        .weight(1f)
+                        .background(
+                            color = if (selectedOption == option) blue500 else gray50, // Fondo azul para seleccionado
+                            shape = when (option) {
+                                "Option 1" -> MaterialTheme.shapes.small.copy(
+                                    topEnd = CornerSize(0.dp),
+                                    bottomEnd = CornerSize(0.dp),
+
+                                )
+                                "Option 3" -> MaterialTheme.shapes.small.copy(
+                                    topStart = CornerSize(0.dp),
+                                    bottomStart = CornerSize(0.dp)
+                                )
+                                else -> MaterialTheme.shapes.small.copy(
+                                    topStart = CornerSize(0.dp),
+                                    topEnd = CornerSize(0.dp),
+                                    bottomStart = CornerSize(0.dp),
+                                    bottomEnd = CornerSize(0.dp)
+                                )
+                            }
+                        )
+                        .clickable { selectedOption = option }
+                        .padding(8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = option,
+                        color = if (selectedOption == option) gray50 else gray800,
+                        fontSize = (16.sp),
+                        modifier = Modifier.padding(start = 4.dp)
+
+                    )
+                }
+            }
+        }
+
+        // Texto para mostrar la opción seleccionada
+        Text(
+            text = "Selected: $selectedOption",
+            modifier = Modifier.padding(top = 16.dp),
+            color = gray800 // Texto gris oscuro
+        )
+    }
+}

@@ -67,5 +67,41 @@ fun MainMenuScreen(navHostController: NavHostController){
                 fontSize = 20.sp,
                 color = MaterialTheme.colorScheme.secondary)
         }
+       /* Button(
+            onClick = {navHostController.navigate("DatePickers")
+            }
+
+        ) {
+            Text("Go to Date Pickers",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }
+        Button(
+            onClick = {navHostController.navigate("PullAndRefresh")
+            }
+
+        ) {
+            Text("Go to Pull and refresh",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }
+        Button(
+            onClick = {navHostController.navigate("BottomStreets")
+            }
+
+        ) {
+            Text("Go to Bottom Streets",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }
+        Button(
+            onClick = {navHostController.navigate("SegmentedButtons")
+            }
+
+        ) {
+            Text("Go to Segmented Buttons",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }*/
     }
 }
