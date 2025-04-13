@@ -38,17 +38,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.example1.ui.theme.Example1Theme
+import com.rick.workclass.ejemplo.com.example.example1.data.ViewModel.AccountViewModel
 import com.rick.workclass.ejemplo.com.example.example1.ui.App.StockApp
+import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.AccountsScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.BottomStreets
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.DatePickers
+import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.FavoriteAccountsScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.HomeScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.LoginScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.MainMenuScreen
+import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.ManageAccountScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.PullAndRefresh
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.SegmentedButtons
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.TestScreen
@@ -57,6 +63,7 @@ import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.componentsScre
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContent {
             Example1Theme {
@@ -77,16 +84,29 @@ fun ComposableMultiScreenApp(){
 }
 @Composable
 fun SetupNavGraph(navController : NavHostController){
-NavHost(navController = navController, startDestination = "Main_menu"){
+NavHost(navController = navController, startDestination = "AccountsScreen"){
     composable("Main_menu"){ MainMenuScreen(navController)}
     composable("Home_Screen"){ HomeScreen(navController) }
     composable("test_screen"){ TestScreen(navController) }
     composable("StockApp") { StockApp(navController) }
     composable("components_screen") { componentsScreen(navController) }
     composable("LoginScreen"){ LoginScreen(navController)}
+    composable("AccountsScreen"){ AccountsScreen(navController)}
+    composable("ManageAccountsScreen"){ ManageAccountScreen(navController) }
+    composable(
+        route = "manageAcScreen/{id}",
+        arguments = listOf(navArgument("id") { defaultValue = -1 })
+    ) { backStackEntry ->
+        val id = backStackEntry.arguments?.getString("id")?.toIntOrNull() ?: -1
+        ManageAccountScreen(
+            navController = navController,
+            accountId = id // <-- aquí es importante nombrarlo
+        )
+    }
+    composable("FavoriteAccountsScreen"){ FavoriteAccountsScreen(navController) }
+}
+}
 
-}
-}
 
 
 
