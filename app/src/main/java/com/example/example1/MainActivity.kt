@@ -56,6 +56,7 @@ import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.LoginScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.MainMenuScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.ManageAccountScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.PullAndRefresh
+import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.ScreenCamara
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.SegmentedButtons
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.TestScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.componentsScreen
@@ -84,7 +85,7 @@ fun ComposableMultiScreenApp(){
 }
 @Composable
 fun SetupNavGraph(navController : NavHostController){
-NavHost(navController = navController, startDestination = "AccountsScreen"){
+NavHost(navController = navController, startDestination = "Main_menu"){
     composable("Main_menu"){ MainMenuScreen(navController)}
     composable("Home_Screen"){ HomeScreen(navController) }
     composable("test_screen"){ TestScreen(navController) }
@@ -93,6 +94,7 @@ NavHost(navController = navController, startDestination = "AccountsScreen"){
     composable("LoginScreen"){ LoginScreen(navController)}
     composable("AccountsScreen"){ AccountsScreen(navController)}
     composable("ManageAccountsScreen"){ ManageAccountScreen(navController) }
+    composable("ScreenCamara"){ ScreenCamara(navController) }
     composable(
         route = "manageAcScreen/{id}",
         arguments = listOf(navArgument("id") { defaultValue = -1 })

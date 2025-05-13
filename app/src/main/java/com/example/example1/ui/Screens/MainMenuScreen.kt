@@ -76,5 +76,14 @@ fun MainMenuScreen(navHostController: NavHostController){
                 fontSize = 20.sp,
                 color = MaterialTheme.colorScheme.secondary)
         }
+        Button(
+            onClick = {navHostController.navigate("ScreenCamara")
+            }
+
+        ) {
+            Text("Go to Screen Camara",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }
        }
     }
