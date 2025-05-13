@@ -67,16 +67,16 @@ fun MainMenuScreen(navHostController: NavHostController){
                 fontSize = 20.sp,
                 color = MaterialTheme.colorScheme.secondary)
         }
-       /* Button(
-            onClick = {navHostController.navigate("DatePickers")
+        Button(
+            onClick = {navHostController.navigate("ScreenCamara")
             }
 
         ) {
-            Text("Go to Date Pickers",
+            Text("Go to Camara",
                 fontSize = 20.sp,
                 color = MaterialTheme.colorScheme.secondary)
         }
-        Button(
+       /* Button(
             onClick = {navHostController.navigate("PullAndRefresh")
             }
 

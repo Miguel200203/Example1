@@ -49,6 +49,7 @@ import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.DatePickers
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.HomeScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.MainMenuScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.PullAndRefresh
+import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.ScreenCamara
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.SegmentedButtons
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.TestScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.componentsScreen
@@ -82,8 +83,8 @@ NavHost(navController = navController, startDestination = "Main_menu"){
     composable("test_screen"){ TestScreen(navController) }
     composable("StockApp") { StockApp(navController) }
     composable("components_screen") { componentsScreen(navController) }
-   /* composable ("PullAndRefresh"){ PullAndRefresh(navController)}
-    composable("DatePickers"){ DatePickers(navController)}
+    composable ("ScreenCamara"){ ScreenCamara(navController)}
+    /*composable("DatePickers"){ DatePickers(navController)}
     composable("SegmentedButtons"){ SegmemntButtons(navController)}
     composable ("BottomStreets"){ BottomStreets(navController) }*/
 }
