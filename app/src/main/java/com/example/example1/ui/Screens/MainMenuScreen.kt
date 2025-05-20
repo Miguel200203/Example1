@@ -76,5 +76,32 @@ fun MainMenuScreen(navHostController: NavHostController){
                 fontSize = 20.sp,
                 color = MaterialTheme.colorScheme.secondary)
         }
+        Button(
+            onClick = {navHostController.navigate("ScreenCamara")
+            }
+
+        ) {
+            Text("Go to Screen Camara",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }
+        Button(
+            onClick = {navHostController.navigate("Calendar")
+            }
+
+        ) {
+            Text("Go to Login Calendar",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }
+        Button(
+            onClick = {navHostController.navigate("NotificationesPush")
+            }
+
+        ) {
+            Text("Go to Login Notifications",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.secondary)
+        }
        }
     }

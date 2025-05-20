@@ -73,6 +73,15 @@ dependencies {
         implementation(libs.androidx.navigation.runtime.ktx)
         implementation(libs.androidx.navigation.runtime.android)
         implementation(libs.androidx.adaptive.android)
+        val cameraxVersion = "1.3.1"
+        implementation("androidx.camera:camera-core:$cameraxVersion") // Lógica base
+        implementation("androidx.camera:camera-camera2:$cameraxVersion")// Conexión con la API Camera2
+        implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+        implementation("androidx.camera:camera-view:$cameraxVersion") // Necesario para la prewiew
+        implementation("androidx.navigation:navigation-compose:2.7.7")
+        implementation ("com.google.accompanist:accompanist-permissions:0.34.0")
+        implementation("androidx.camera:camera-video:$cameraxVersion")
+        implementation ("io.coil-kt:coil-compose:2.2.2")
 
         // Room
         val room_version = "2.6.1"
@@ -89,6 +98,11 @@ dependencies {
         implementation(libs.okhttp)
         implementation(libs.kotlinx.serialization.json)
         implementation(libs.converter.gson)
+        // WorkManager
+// REVISA QUE NO LOS TENGAS REPETIDOS, USA CTRL + F
+        implementation("androidx.work:work-runtime-ktx:2.10.1")
+        implementation ("androidx.work:work-runtime:2.10.1")
+
 
         // Tests
         testImplementation(libs.junit)
