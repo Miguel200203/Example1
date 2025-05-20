@@ -48,6 +48,7 @@ import com.example.example1.ui.theme.Example1Theme
 import com.rick.workclass.ejemplo.com.example.example1.data.ViewModel.AccountViewModel
 import com.rick.workclass.ejemplo.com.example.example1.ui.App.StockApp
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.AccountsScreen
+import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.AppScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.BottomStreets
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.DatePickers
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.FavoriteAccountsScreen
@@ -55,6 +56,8 @@ import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.HomeScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.LoginScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.MainMenuScreen
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.ManageAccountScreen
+import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.NotificationScreen
+import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.NotificationScreenPreview
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.PullAndRefresh
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.ScreenCamara
 import com.rick.workclass.ejemplo.com.example.example1.ui.Screens.SegmentedButtons
@@ -95,6 +98,8 @@ NavHost(navController = navController, startDestination = "Main_menu"){
     composable("AccountsScreen"){ AccountsScreen(navController)}
     composable("ManageAccountsScreen"){ ManageAccountScreen(navController) }
     composable("ScreenCamara"){ ScreenCamara(navController) }
+    composable("Calendar"){ AppScreen(navController) }
+    composable("NotificationesPush"){ NotificationScreenPreview(navController) }
     composable(
         route = "manageAcScreen/{id}",
         arguments = listOf(navArgument("id") { defaultValue = -1 })
