@@ -98,6 +98,11 @@ dependencies {
         implementation(libs.okhttp)
         implementation(libs.kotlinx.serialization.json)
         implementation(libs.converter.gson)
+        // WorkManager
+// REVISA QUE NO LOS TENGAS REPETIDOS, USA CTRL + F
+        implementation("androidx.work:work-runtime-ktx:2.10.1")
+        implementation ("androidx.work:work-runtime:2.10.1")
+
 
         // Tests
         testImplementation(libs.junit)
